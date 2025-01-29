@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+systemctl disable check-ping-shutdown || true
+rm -f /usr/local/bin/check-ping-shutdown.sh
+echo "check-ping-shutdown service removed."

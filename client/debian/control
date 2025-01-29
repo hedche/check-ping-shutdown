@@ -1,0 +1,7 @@
+Package: check-ping-shutdown
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Monty Rhodes <monty@inabit-limited.tech>
+Description: A script and systemd service to check ping and shut down the system.

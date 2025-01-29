@@ -1,14 +1,14 @@
 [Unit]
-Description=Check Mains Status and Shutdown Service
+Description=Check Ping Shutdown Service
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/check_status.sh
+ExecStart=/usr/local/bin/check-ping-shutdown.sh
 Restart=no
 User=root
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=check-mains
+SyslogIdentifier=check-ping-shutdown
 
 [Install]
 WantedBy=multi-user.target
