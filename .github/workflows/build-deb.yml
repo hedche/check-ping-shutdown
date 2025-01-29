@@ -5,6 +5,7 @@ on:
     paths:
       - 'client/check-ping-shutdown.sh'
       - 'client/check-ping-shutdown.service'
+      - 'client/debian/*'
       - '.github/workflows/build-deb.yml'
   workflow_dispatch:
 
