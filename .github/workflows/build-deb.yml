@@ -1,0 +1,51 @@
+name: Build and Release .deb
+
+on:
+  push:
+    paths:
+      - 'client/check-ping-shutdown.sh'
+      - 'client/check-ping-shutdown.service'
+      - '.github/workflows/build-deb.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Debian Packaging Tools
+        run: sudo apt update && sudo apt install -y dpkg-dev debhelper
+
+      - name: Build .deb Package
+        run: |
+          cd client
+          dpkg-buildpackage -us -uc
+          mv ../check-ping-shutdown_*.deb .
+
+      - name: Upload .deb as an Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-ping-shutdown
+          path: client/check-ping-shutdown_*.deb
+
+  release:
+    needs: build-deb
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download .deb Package
+        uses: actions/download-artifact@v4
+        with:
+          name: check-ping-shutdown
+          path: .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: check-ping-shutdown_*.deb
+          tag_name: v1.0.${{ github.run_number }}
+          release_name: "check-ping-shutdown v1.0.${{ github.run_number }}"
+          body: "Automatic release of check-ping-shutdown package"
+          draft: false
+          prerelease: false
