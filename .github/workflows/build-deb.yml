@@ -18,6 +18,15 @@ jobs:
       - name: Install Debian Packaging Tools
         run: sudo apt update && sudo apt install -y dpkg-dev debhelper
 
+      - name: Generate Debian Changelog
+        run: |
+          cd client/debian
+          echo "check-ping-shutdown (1.0.${{ github.run_number }}) unstable; urgency=medium" > changelog
+          echo "" >> changelog
+          echo "  * Automated release" >> changelog
+          echo "" >> changelog
+          echo " -- Your Name <monty@inabit-limited.tech>  $(date -R)" >> changelog
+
       - name: Build .deb Package
         run: |
           cd client
