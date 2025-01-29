@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Debian Packaging Tools
-        run: sudo apt update && sudo apt install -y dpkg-dev debhelper
+        run: sudo apt update && sudo apt install -y build-essential dpkg-dev debhelper
 
       - name: Generate Debian Changelog
         run: |
