@@ -5,3 +5,5 @@
 override_dh_install:
 	dh_install
 	install -D -m 644 check-ping-shutdown.conf debian/check-ping-shutdown/etc/check-ping-shutdown.conf
+	install -D -m 755 check-ping-shutdown.sh /usr/local/bin/check-ping-shutdown.sh
+	install -D -m 644 debian/check-ping-shutdown.service debian/check-ping-shutdown/lib/systemd/system/check-ping-shutdown.service
