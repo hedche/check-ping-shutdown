@@ -1,3 +1,7 @@
 #!/usr/bin/make -f
 %:
 	dh $@
+
+override_dh_install:
+	dh_install
+	install -D -m 644 check-ping-shutdown.conf debian/check-ping-shutdown/etc/check-ping-shutdown.conf
