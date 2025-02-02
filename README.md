@@ -1,11 +1,7 @@
+# Check Ping Shutdown (CPS) Service
+This service will gracefully shutdown your host when it's unable to `ping` another host.
 
-
-export DOCKER_BUILDKIT=1
-
-docker buildx create --name mybuilder --use
-
-
-docker buildx build --platform linux/amd64,linux/arm/v7 \
-  -t hedche/power-monitor:latest \
-  --push \
-  .
+The configuration file is at `/etc/check-ping-shutdown.conf`, and then restart the `check-ping-shudown` service with:
+```bash
+sudo systemctl restart check-ping-shutdown
+```
