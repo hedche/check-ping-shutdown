@@ -54,20 +54,19 @@ jobs:
         with:
           name: check-ping-shutdown
           path: .
-    
+  
       - name: Authenticate with GitHub Packages
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-    
-      - name: Upload .deb Package to GitHub Packages
-        run: |
-          gh release upload v1.0.${{ github.run_number }} check-ping-shutdown_*.deb
-    
+  
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: check-ping-shutdown_*.deb
           tag_name: v1.0.${{ github.run_number }}
           release_name: "check-ping-shutdown v1.0.${{ github.run_number }}"
           body: "Automatic release of check-ping-shutdown package"
           draft: false
           prerelease: false
+  
+      - name: Upload .deb Package to GitHub Packages
+        run: |
+          gh release upload v1.0.${{ github.run_number }} check-ping-shutdown_*.deb
