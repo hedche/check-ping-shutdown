@@ -43,13 +43,22 @@ jobs:
   release:
     needs: build-deb
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - name: Download .deb Package
         uses: actions/download-artifact@v4
         with:
           name: check-ping-shutdown
           path: .
-
+  
+      - name: Authenticate with GitHub Packages
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+  
+      - name: Upload .deb Package to GitHub Packages
+        run: |
+          gh release upload v1.0.${{ github.run_number }} check-ping-shutdown_*.deb
+  
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
