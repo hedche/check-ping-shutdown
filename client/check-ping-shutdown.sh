@@ -8,7 +8,7 @@ log() {
 }
 
 err() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - ERROR: $1" | tee /dev/stderr
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - ERROR: $1"
 		exit 1
 }
 
@@ -39,7 +39,7 @@ check_allowed_values() {
 if [[ -f "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
 		log "Config file found, checking required variables are present..."
-		if [[ -z "$PING_SERVER" ]]; then
+		if [[ ! -z "$PING_SERVER" ]]; then
 				log "Using PING_SERVER: $PING_SERVER"
 		else
 				err "PING_SERVER not defined!"
@@ -63,7 +63,7 @@ fi
 
 while true; do
 		# Change this ping timeout -W if you are not on physical LAN and have higher ping times
-		if ping -c 1 -W 0.5 "$PING_SERVER" > /dev/null 2>&1
+		if ping -c 1 -W 0.5 "$PING_SERVER" > /dev/null 2>&1; then
 				failed_seconds=0
 		else
 
