@@ -6,8 +6,7 @@ After=network.target
 ExecStart=/usr/local/bin/check-ping-shutdown.sh
 Restart=no
 User=root
-StandardOutput=syslog
-StandardError=syslog
+StandardOutput=journal
 SyslogIdentifier=check-ping-shutdown
 
 [Install]
