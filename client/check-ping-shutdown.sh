@@ -74,6 +74,7 @@ while true; do
 						shutdown_trigger
 
 				elif [[ "$MODE" == "ACTIVE" ]]; then
+            log "Unable to ping $PING_SERVER for $failed_seconds seconds..."
 						((failed_seconds++))
 						if [[ "$failed_seconds" -ge "$TIMEOUT" ]]; then
 								shutdown_trigger
