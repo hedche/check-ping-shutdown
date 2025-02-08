@@ -3,7 +3,7 @@ Description=Check Ping Shutdown Service
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/check-ping-shutdown.sh
+ExecStart=/usr/bin/check-ping-shutdown.sh
 Restart=no
 User=root
 StandardOutput=journal
