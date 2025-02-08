@@ -1,1 +1,1 @@
-/etc/check-ping-shutdown.conf
+/etc/systemd/system/check-ping-shutdown.conf
