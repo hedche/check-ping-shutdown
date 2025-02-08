@@ -63,7 +63,7 @@ fi
 
 while true; do
 		# Change this ping timeout -W if you are not on physical LAN and have higher ping times
-		if ping -c 1 -W 0.5 "$PING_SERVER" > /dev/null 2>&1; then
+		if ping -c 1 -W 1 "$PING_SERVER" > /dev/null 2>&1; then
 				failed_seconds=0
 		else
 
