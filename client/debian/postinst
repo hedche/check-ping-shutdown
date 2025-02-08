@@ -2,7 +2,7 @@
 set -e
 
 # Configuration file
-CONFIG="/etc/systemd/system/check-ping-shutdown.conf"
+CONFIG="/etc/check-ping-shutdown.conf"
 
 # Only create config if it doesn't exist
 if [ ! -f "$CONFIG" ]; then
